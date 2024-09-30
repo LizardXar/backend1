@@ -21,6 +21,8 @@ Este proyecto es una aplicación web para gestionar equipos, instructores y mant
    ```bash
    git clone https://github.com/LizardXar/backend1.git
    cd backend1
+   ```
    ```bash
 2. **Instalar dependencias**:
    pip install -r requirements.txt
+   ```
