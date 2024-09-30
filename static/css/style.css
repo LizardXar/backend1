@@ -1,0 +1,41 @@
+body {
+  height: 100%;
+}
+
+
+aside {
+  position: fixed;
+  overflow: auto;
+  height: calc(100vh - 68px);
+  justify-content: flex-start;
+  align-self: flex-start;
+
+}
+
+main {
+  position: relative;
+  overflow: auto;
+  margin-left: auto;
+  justify-content: flex-end;
+  align-self: flex-end;
+}
+
+#sidebarshow {
+  display: none;
+
+}
+
+@media screen and (max-width: 575px) {
+  #sidebarshow {
+    display: inline;
+  }
+
+  #sidebartoggle {
+    display: none;
+  }
+}
+
+#calendar {
+  max-width: 1000px;
+  margin: 40px auto;
+}

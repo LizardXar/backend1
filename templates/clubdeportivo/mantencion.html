@@ -1,0 +1,50 @@
+{% extends "clubdeportivo/base.html" %}
+{% load static %}
+
+{% block titulobotones%}
+        <h2>{% if mantencion %}Editar Mantención{% else %}Agregar Mantención{% endif %}</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <a type="button" href="{% url 'mantenciones' %}" class="btn btn-sm btn-outline-danger">Volver</a>
+          </div>
+        </div>
+{% endblock titulobotones%}
+
+{% block contenido %}
+    <div class="container-fluid">
+        <form method="post">
+            {% csrf_token %}
+            <div class="col-6 card p-5">
+                <div class="row">
+
+                    <div class="form-group col-4">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" class="form-control" id="fecha" name="fecha" 
+                               value="{% if mantencion %}{{ mantencion.fecha }}{% endif %}" required>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="hora">Hora</label>
+                        <input type="time" class="form-control" id="hora" name="hora" 
+                               value="{% if mantencion %}{{ mantencion.hora }}{% endif %}" required>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="ubicacion">Ubicación</label>
+                        <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ubicación" 
+                               value="{% if mantencion %}{{ mantencion.ubicacion }}{% endif %}" required>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-5 mt-3">
+                        <button type="submit" class="btn btn-primary">{% if mantencion %}Guardar{% else %}Agregar Mantención{% endif %}</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+{% endblock contenido %}
+

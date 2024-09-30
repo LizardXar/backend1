@@ -1,0 +1,47 @@
+{% extends "clubdeportivo/base.html" %}
+{% load static %}
+
+{% block titulobotones %}
+<h2>Calendario</h2>
+{% endblock titulobotones %}
+
+{% block contenido %}
+<div id="calendar"></div>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    // Inicialización del calendario
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      locale: 'es',  // Configuración para español
+      events: [
+        {% for evento in eventos %}
+        {
+          title: "{{ evento.title|escapejs }}",  // Escapar adecuadamente para JS
+          start: "{{ evento.start|escapejs }}"   // Escapar adecuadamente para JS
+        }{% if not forloop.last %},{% endif %}  // Asegurarse de que no haya una coma extra al final
+        {% endfor %}
+      ],
+      eventContent: function(arg) {
+        // Crear el contenido del evento con salto de línea
+        var eventTitle = document.createElement('div');
+        var lines = arg.event.title.split(' - ');  // Dividir por el guion
+
+        // Añadir hora y ubicación en líneas separadas
+        if (lines.length === 2) {
+          eventTitle.innerHTML = lines[0] + '<br>' + lines[1];
+        } else {
+          eventTitle.innerHTML = arg.event.title;  // Por si acaso no hay hora o ubicación
+        }
+
+        return { domNodes: [eventTitle] };
+      }
+    });
+
+    calendar.render();
+  });
+</script>
+{% endblock contenido %}

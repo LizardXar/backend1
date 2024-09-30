@@ -1,0 +1,69 @@
+{% extends "clubdeportivo/base.html" %}
+{% load static %} 
+
+{% block titulobotones%}
+        <h2>{% if instructor %}Editar Instructor{% else %}Agregar Instructor{% endif %}</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <a type="button" href="{% url 'instructores' %}" class="btn btn-sm btn-outline-danger">Volver</a>
+          </div>
+        </div>
+{% endblock titulobotones%}
+
+{% block contenido %}
+    <div class="container-fluid">
+        <form method="post">
+            {% csrf_token %}
+            <div class="col-6 card p-5">
+                <div class="row">
+
+                    <div class="form-group col-4">
+                        <label for="rut">Rut</label>
+                        <input type="text" class="form-control" id="rut" name="rut" placeholder="Rut" 
+                               value="{% if instructor %}{{ instructor.rut }}{% endif %}" required>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" 
+                               value="{% if instructor %}{{ instructor.nombre }}{% endif %}" required>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="categoria">Categoría</label>
+                        <input type="text" class="form-control" id="categoria" name="categoria" placeholder="Categoría" 
+                               value="{% if instructor %}{{ instructor.categoria }}{% endif %}" required>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-4">
+                        <label for="area">Área</label>
+                        <input type="text" class="form-control" id="area" name="area" placeholder="Área" 
+                               value="{% if instructor %}{{ instructor.area }}{% endif %}" required>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="ubicacion">Ubicación</label>
+                        <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ubicación" 
+                               value="{% if instructor %}{{ instructor.ubicacion }}{% endif %}" required>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="fecha_ingreso">Fecha de Ingreso</label>
+                        <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso" 
+                               value="{% if instructor %}{{ instructor.fecha_ingreso }}{% endif %}" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4 mt-3">
+                        <button type="submit" class="btn btn-primary">{% if instructor %}Guardar{% else %}Agregar Instructor{% endif %}</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+{% endblock contenido %}

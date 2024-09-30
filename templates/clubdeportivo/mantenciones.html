@@ -1,0 +1,48 @@
+{% extends "clubdeportivo/base.html" %} 
+{% load static %} 
+
+{% block titulobotones%}
+        <h2>Lista de Mantenciones</h2>
+        <div class="btn-toolbar mb-4 mb-md-0">
+          <div class="btn-group me-5">
+            <a href="{% url 'calendario' %}" class="btn btn-sm btn-outline-secondary">Calendario</a>
+            <a href="{% url 'crear_mantencion' %}" class="btn btn-sm btn-outline-danger">Crear Mantención</a>
+          </div>
+        </div>
+{% endblock titulobotones%}
+
+{% block contenido %}
+<!--Van a llegar datos a través de dictMantenciones-->
+<div class="row">
+  <div class="col-10">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Hora</th>
+          <th scope="col">Ubicación</th>
+          <th scope="col" style="width: 7px">Modificar</th>
+          <th scope="col" style="width: 7px">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for clave, valor in dictMantenciones.items %}
+        <tr class="text-center">
+          <td>{{ clave }}</td>
+          <td>{{ valor.fecha }}</td>
+          <td>{{ valor.hora }}</td>
+          <td>{{ valor.ubicacion }}</td>
+          <td>
+            <a href="{% url 'editar_mantencion' clave %}"><i class="bi bi-gear-fill"></i></a>
+          </td>
+          <td>
+            <a href="{% url 'eliminar_mantencion' clave %}"><i class="bi bi-trash-fill"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock contenido %}

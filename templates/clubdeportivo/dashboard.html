@@ -1,0 +1,63 @@
+{% extends "clubdeportivo/base.html" %}
+{% load static %}
+
+{% block titulobotones %}
+<h2>Dashboard</h2>
+{% endblock titulobotones %}
+
+{% block contenido %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Cantidad de equipos en mantenimiento -->
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    Equipos en mantenimiento
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ equipos_mantenimiento }}</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cantidad de instructores -->
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    Instructores
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ cantidad_instructores }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Mantenimientos realizados y por venir -->
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    Mantenimientos
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Realizados: {{ mantenimientos_realizados }}</h5>
+                    <h5 class="card-title">Por venir: {{ mantenimientos_por_venir }}</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipos en estado de falla -->
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    Equipos en estado de falla
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ equipos_falla }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}

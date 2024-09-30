@@ -1,0 +1,53 @@
+{% extends "clubdeportivo/base.html" %} 
+{% load static %} 
+
+{% block titulobotones%}
+        <h2>Lista de Instructores</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <a href="{% url 'crear_mantencion' %}" class="btn btn-sm btn-outline-danger">Crear Instructor</a>
+          </div>
+        </div>
+{% endblock titulobotones%}
+
+{% block contenido %}
+<!--Van a llegar datos a travez de dictInstructores-->
+<div class="row">
+  <div class="col-10">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Rut</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Area</th>
+          <th scope="col">Ubicación</th>
+          <th scope="col">Fecha de ingreso</th>
+          <th scope="col" style="width: 7px">Modificar</th>
+          <th scope="col" style="width: 7px">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for clave,valor in dictInstructores.items %}
+        <tr class="text-center">
+          <td>{{ clave }}</td>
+          <td>{{ valor.rut }}</td>
+          <td>{{ valor.nombre }}</td>
+          <td>{{ valor.categoria }}</td>
+          <td>{{ valor.area }}</td>
+          <td>{{ valor.ubicacion }}</td>
+          <td>{{ valor.fecha_ingreso }}</td>
+          <td>
+            <a href="{% url 'editar_instructor' clave %}"><i class="bi bi-gear-fill"></i></a>
+          </td>
+          <td>
+            <a href="{% url 'eliminar_instructor' clave %}"><i class="bi bi-trash-fill"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock contenido %}

@@ -1,0 +1,60 @@
+{% extends "clubdeportivo/base.html" %}
+{% load static %}
+
+{% block titulobotones%}
+        <h2>{% if equipo %}Editar Equipo{% else %}Agregar Equipo{% endif %}</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <a type="button" href="{% url 'inventarioequipos' %}" class="btn btn-sm btn-outline-danger">Volver</a>
+          </div>
+        </div>
+{% endblock titulobotones%}
+
+{% block contenido %}
+    <div class="container-fluid">
+        <form method="post">
+            {% csrf_token %}
+            <div class="col-6 card p-5">
+                <div class="row">
+
+                    <div class="form-group col-4">
+                        <label for="nombre">Nombre del equipo</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del equipo" 
+                               value="{% if equipo %}{{ equipo.nombre }}{% endif %}" required>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="estado">Estado</label>
+                        <select class="form-control" id="estado" name="estado" required>
+                            <option value="Operativo" {% if equipo and equipo.estado == "Operativo" %}selected{% endif %}>Operativo</option>
+                            <option value="En mantenimiento" {% if equipo and equipo.estado == "En mantenimiento" %}selected{% endif %}>En mantenimiento</option>
+                            <option value="Falla" {% if equipo and equipo.estado == "Falla" %}selected{% endif %}>Falla</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-4">
+                        <label for="modelo">Modelo</label>
+                        <input type="text" class="form-control" id="modelo" name="modelo" placeholder="Modelo" 
+                               value="{% if equipo %}{{ equipo.modelo }}{% endif %}" required>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="ubicacion">Ubicación</label>
+                        <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ubicación" 
+                               value="{% if equipo %}{{ equipo.ubicacion }}{% endif %}" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3 mt-3">
+                        <button type="submit" class="btn btn-primary">{% if equipo %}Guardar{% else %}Agregar Equipo{% endif %}</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+{% endblock contenido %}
