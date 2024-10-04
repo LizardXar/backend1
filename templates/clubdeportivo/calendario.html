@@ -12,31 +12,26 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
-
-    // Inicialización del calendario
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
-      locale: 'es',  // Configuración para español
+      locale: 'es',  
       events: [
         {% for evento in eventos %}
         {
-          title: "{{ evento.title|escapejs }}",  // Escapar adecuadamente para JS
-          start: "{{ evento.start|escapejs }}"   // Escapar adecuadamente para JS
-        }{% if not forloop.last %},{% endif %}  // Asegurarse de que no haya una coma extra al final
+          title: "{{ evento.title|escapejs }}",
+          start: "{{ evento.start|escapejs }}"
+        }{% if not forloop.last %},{% endif %}
         {% endfor %}
       ],
       eventContent: function(arg) {
-        // Crear el contenido del evento con salto de línea
         var eventTitle = document.createElement('div');
-        var lines = arg.event.title.split(' - ');  // Dividir por el guion
+        var lines = arg.event.title.split(' - ');
 
-        // Añadir hora y ubicación en líneas separadas
         if (lines.length === 2) {
           eventTitle.innerHTML = lines[0] + '<br>' + lines[1];
         } else {
-          eventTitle.innerHTML = arg.event.title;  // Por si acaso no hay hora o ubicación
+          eventTitle.innerHTML = arg.event.title;
         }
-
         return { domNodes: [eventTitle] };
       }
     });
