@@ -8,56 +8,52 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
-  <style>
-    .navbar.border-bottom {
-    border-color: transparent !important;
-  }
-  </style>
+    <style>
+    .position-top-right {
+      position: absolute;
+      top: 10px;  /* Margen superior */
+      right: 10px; /* Margen derecho */
+      z-index: 1000; /* Asegura que se mantenga por encima de otros elementos */
+    }
+    </style>
+
 </head>
 
 <body class="bg-body-tertiary">
 
-
- {% block navbar %}
-  <nav class="navbar sticky-top navbar-expand-lg border-bottom bg-body-tertiary">
-    <div class="container-fluid">
-
-      <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse"
-        data-bs-target="#collapseWidthExample" aria-expanded="true" aria-controls="collapseWidthExample"
-        style="margin-right: 10px; padding: 0px 5px 0px 5px;" id="sidebartoggle" onclick="changeclass()"> <i
-          class="bi bi-arrows-expand-vertical"></i>
-      </button>
-
-      <a class="navbar-brand" href="{% url 'inicio' %}"> <img src="{% static 'images/1x/logo-centro-deportivo_1.png' %}" width="145" height="90"/></a>
-
-    <div class="dropdown">
-        <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
-          data-bs-toggle="dropdown" aria-expanded="true">
-          <img src="{% static 'images/usuario.png' %}" alt="" width="32" height="32" class="rounded-circle me-2">
-          <span class="d-print-block"><strong>Usuario</strong></span>
-        </a>
-        <ul class="dropdown-menu text-small shadow">
-          <li><a class="dropdown-item" href="#">Configuración</a></li>
-          <li><a class="dropdown-item" href="#">Perfil</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
+    <div class="dropdown mr-2 position-top-right">
+      <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+        data-bs-toggle="dropdown" aria-expanded="true">
+        <img src="{% static 'images/usuario.png' %}" alt="" width="32" height="32" class="rounded-circle me-2">
+        <span class="d-print-block"><strong>Usuario</strong></span>
+      </a>
+      <ul class="dropdown-menu text-small shadow">
+        <li><a class="dropdown-item" href="#">Configuración</a></li>
+        <li><a class="dropdown-item" href="#">Perfil</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
     </div>
-    </div>
-  </nav>
-  {% endblock navbar %}
+    
+
 
 
   <!-- Sidebar -->
   {% block sidebar %}
   <aside class="collapse show collapse-horizontal col-sm-2 p-3 border-end bg-body-tertiary" id="collapseWidthExample">
+    <div class="d-flex flex-column align-items-center">
+      <a href="{% url 'inicio' %}" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+        <img src="{% static 'images/1x/logo-centro-deportivo-solo.png' %}" width="100" height="100"/>
+      </a>
+      <span class="d-print-block p-2 align-items-center">Club deportivo</span>
+    </div>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
 
       <li class="nav-item">
-        <a href="{% url 'inicio' %}" class="nav-link link-body-emphasis" aria-current="page">
+        <a href="{% url 'inicio' %}" class="nav-link link-body-emphasis active" aria-current="page">
           <p class="bi bi-house-door" style="position:fixed;"> Inicio</p><br>
         </a>
       </li>
@@ -82,7 +78,7 @@
 
       <li>
         <a href="{% url 'instructores' %}" class="nav-link link-body-emphasis">
-          <p class="bi bi-person-circle" style="position:fixed;"> Instructores</p><br>
+          <p class="bi bi-person-circle" style="position:fixed;"> Usuarios</p><br>
         </a>
       </li>
       
@@ -96,26 +92,42 @@
   <main class="col-sm-10 bg-body-tertiary">
     <div class="container-fluid">
 
-      <div class="d-flex justify-content-around flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" id="title">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" id="title">
       {% block titulobotones%}
         <h1 class="h2">Inicio</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">boton1</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">boton2</button>
-          </div>
-        </div>
       {% endblock titulobotones%}
       </div>
 
 
-    {% block contenido %}
-        <p>Aqui estara el contenido principal</p>
+      {% block contenido %}
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-md-6 d-flex justify-content-center mb-3">
+            <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg w-100 py-3" role="button">Dashboard</a>
+          </div>
+          <div class="col-md-6 d-flex justify-content-center mb-3">
+            <a href="{% url 'inventarioequipos' %}" class="btn btn-secondary btn-lg w-100 py-3" role="button">Inventario de Equipos</a>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6 d-flex justify-content-center mb-3">
+            <a href="{% url 'mantenciones' %}" class="btn btn-success btn-lg w-100 py-3" role="button">Mantenciones</a>
+          </div>
+          <div class="col-md-6 d-flex justify-content-center mb-3">
+            <a href="{% url 'instructores' %}" class="btn btn-info btn-lg w-100 py-3" role="button">Instructores</a>
+          </div>
+        </div>
+      </div>
     {% endblock contenido %}
+    
+  
 
 
     </div>
   </main>
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

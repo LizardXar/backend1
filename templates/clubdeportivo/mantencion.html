@@ -3,15 +3,63 @@
 
 {% block titulobotones%}
         <h2>{% if mantencion %}Editar Mantención{% else %}Agregar Mantención{% endif %}</h2>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-            <a type="button" href="{% url 'mantenciones' %}" class="btn btn-sm btn-outline-secondary">Volver</a>
-          </div>
-        </div>
 {% endblock titulobotones%}
+
+{% block sidebar %}
+  <aside class="collapse show collapse-horizontal col-sm-2 p-3 border-end bg-body-tertiary" id="collapseWidthExample">
+    <div class="d-flex flex-column align-items-center">
+      <a href="{% url 'inicio' %}" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+        <img src="{% static 'images/1x/logo-centro-deportivo-solo.png' %}" width="100" height="100"/>
+      </a>
+      <span class="d-print-block p-2 align-items-center">Club deportivo</span>
+    </div>
+    
+
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+
+      <li class="nav-item">
+        <a href="{% url 'inicio' %}" class="nav-link link-body-emphasis">
+          <p class="bi bi-house-door" style="position:fixed;"> Inicio</p><br>
+        </a>
+      </li>
+
+      <li>
+        <a href="{% url 'dashboard' %}" class="nav-link link-body-emphasis">
+          <p class="bi bi-speedometer2" style="position:fixed;"> Dashboard</p><br>
+        </a>
+      </li>
+
+      <li>
+        <a href="{% url 'inventarioequipos' %}" class="nav-link link-body-emphasis">
+          <p class="bi bi-grid" style="position:fixed;"> Equipos</p><br>
+        </a>
+      </li>
+
+      <li>
+        <a href="{% url 'mantenciones' %}" class="nav-link link-body-emphasis active" aria-current="page">
+          <p class="bi bi-table" style="position:fixed;"> Mantenimiento</p><br>
+        </a>
+      </li>
+
+      <li>
+        <a href="{% url 'instructores' %}" class="nav-link link-body-emphasis">
+          <p class="bi bi-person-circle" style="position:fixed;"> Usuarios</p><br>
+        </a>
+      </li>
+      
+    </ul>
+    <hr>
+  </aside>
+{% endblock sidebar %}
 
 {% block contenido %}
     <div class="container-fluid">
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+              <a type="button" href="{% url 'mantenciones' %}" class="btn btn-sm btn-outline-secondary">Volver</a>
+            </div>
+          </div>
         <form method="post">
             {% csrf_token %}
             <div class="col-6 card p-5">
