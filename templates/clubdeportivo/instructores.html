@@ -5,7 +5,7 @@
         <h2>Lista de Instructores</h2>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
-            <a href="{% url 'crear_mantencion' %}" class="btn btn-sm btn-outline-danger">Crear Instructor</a>
+            <a href="{% url 'crear_mantencion' %}" class="btn btn-sm btn-outline-success">Crear Instructor</a>
           </div>
         </div>
 {% endblock titulobotones%}
@@ -14,16 +14,16 @@
 <!--Van a llegar datos a travez de dictInstructores-->
 <div class="row">
   <div class="col-10">
-    <table class="table table-bordered">
+    <table class="table table-table">
       <thead>
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Rut</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Categoria</th>
-          <th scope="col">Area</th>
-          <th scope="col">Ubicación</th>
-          <th scope="col">Fecha de ingreso</th>
+          <th scope="col" style="text-align: center">ID</th>
+          <th scope="col" style="text-align: center">Rut</th>
+          <th scope="col" style="text-align: center">Nombre</th>
+          <th scope="col" style="text-align: center">Categoria</th>
+          <th scope="col" style="text-align: center">Area</th>
+          <th scope="col" style="text-align: center">Ubicación</th>
+          <th scope="col" style="text-align: center">Fecha de ingreso</th>
           <th scope="col" style="width: 7px">Modificar</th>
           <th scope="col" style="width: 7px">Eliminar</th>
         </tr>
@@ -39,10 +39,10 @@
           <td>{{ valor.ubicacion }}</td>
           <td>{{ valor.fecha_ingreso }}</td>
           <td>
-            <a href="{% url 'editar_instructor' clave %}"><i class="bi bi-gear-fill"></i></a>
+            <a href="{% url 'editar_instructor' clave %}"><i class="bi bi-gear-fill text-primary"></i></a>
           </td>
           <td>
-            <a href="{% url 'eliminar_instructor' clave %}"><i class="bi bi-trash-fill"></i></a>
+            <a href="{% url 'eliminar_instructor' clave %}"><i class="bi bi-trash-fill text-danger"></i></a>
           </td>
         </tr>
         {% endfor %}

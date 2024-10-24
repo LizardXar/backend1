@@ -6,7 +6,7 @@
         <div class="btn-toolbar mb-4 mb-md-0">
           <div class="btn-group me-5">
             <a href="{% url 'calendario' %}" class="btn btn-sm btn-outline-secondary">Calendario</a>
-            <a href="{% url 'crear_mantencion' %}" class="btn btn-sm btn-outline-danger">Crear Mantención</a>
+            <a href="{% url 'crear_mantencion' %}" class="btn btn-sm btn-outline-success">Crear Mantención</a>
           </div>
         </div>
 {% endblock titulobotones%}
@@ -15,15 +15,15 @@
 <!--Van a llegar datos a través de dictMantenciones-->
 <div class="row">
   <div class="col-10">
-    <table class="table table-bordered">
+    <table class="table table-table">
       <thead>
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Fecha</th>
-          <th scope="col">Hora</th>
-          <th scope="col">Ubicación</th>
-          <th scope="col" style="width: 7px">Modificar</th>
-          <th scope="col" style="width: 7px">Eliminar</th>
+          <th scope="col" style="text-align: center">ID</th>
+          <th scope="col" style="text-align: center">Fecha</th>
+          <th scope="col" style="text-align: center">Hora</th>
+          <th scope="col" style="text-align: center">Ubicación</th>
+          <th scope="col" style="width: 10px">Modificar</th>
+          <th scope="col" style="width: 10px">Eliminar</th>
         </tr>
       </thead>
       <tbody>
@@ -34,10 +34,10 @@
           <td>{{ valor.hora }}</td>
           <td>{{ valor.ubicacion }}</td>
           <td>
-            <a href="{% url 'editar_mantencion' clave %}"><i class="bi bi-gear-fill"></i></a>
+            <a href="{% url 'editar_mantencion' clave %}"><i class="bi bi-gear-fill text-primary"></i></a>
           </td>
           <td>
-            <a href="{% url 'eliminar_mantencion' clave %}"><i class="bi bi-trash-fill"></i></a>
+            <a href="{% url 'eliminar_mantencion' clave %}"><i class="bi bi-trash-fill text-danger"></i></a>
           </td>
         </tr>
         {% endfor %}
